@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <style>
+        body {
+            color:white;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color:#141438;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #5e9bff;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .separator {
+            margin: 20px 0;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .terms {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .terms a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        /* Menu Bar */
+        .menu-bar {
+            height: 100%;
+            width: 250px;
+            margin-top:0px;
+            position:fixed;
+            margin-left:0px;
+            top: 0;
+            left: 0;
+            font-weight: 20;
+            background-color: #141438;
+            padding-top: 60px;
+        }
+
+        .menu-bar a {
+            display:list-item;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            text-decoration:solid;
+            font-size: 18px;
+        }
+         /* Footer */
+         footer {
+            text-align: center;
+            background-color: #141438;
+            color: white;
+            padding: 10px 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .menu-bar a:hover {
+            background-color: #5d5e5b;
+        }
+
+        
+
+        .create-account {
+          
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .create-account a {
+            color: white;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .create-account a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+     <!-- Menu Bar -->
+     <div class="menu-bar">
+        <h2 style="color: white; text-align: center;">DIGITAL MANAGEMENT</h2>
+        <a href="home.html">HOME</a>
+        <a href="sign_in.html">LOGIN</a>
+        <a href="combine_registration.html">ENROLLMENT</a>
+        <a href="book_section.html">BOOKS</a>
+        <a href="contact.html">CONTACT</a>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="form-container">
+        <h2>Student Registration</h2>
+        <form action="student_data.php" method="POST">
+            <!-- Full Name -->
+            <input class="input-field" type="text" name="full_name" placeholder="Full Name" required><br>
+
+            <!-- Email -->
+            <input class="input-field" type="email" name="email" placeholder="Email Address" required><br>
+
+            <!-- Mobile Number -->
+            <input class="input-field" type="text" name="mobile" placeholder="Mobile Number" required><br>
+
+            <!-- Course -->
+            <input class="input-field" type="text" name="course" placeholder="Course Name" required><br>
+
+            <!-- Student ID -->
+            <input class="input-field" type="text" name="student_id" placeholder="Student ID" required><br>
+
+            <!-- Gender (Radio Buttons) -->
+            <div class="gender-container" style="margin-top: 10px;">
+                <label for="male">
+                    <input type="radio" id="male" name="gender" value="male" required> Male
+                </label>
+                <label for="female" style="margin-left: 20px;">
+                    <input type="radio" id="female" name="gender" value="female"> Female
+                </label>
+                <label for="others" style="margin-left: 20px;">
+                    <input type="radio" id="others" name="gender" value="others"> Other
+                </label>
+            </div>
+            <br>
+
+            <!-- Submit Button -->
+            <input type="submit" class="button" value="Register">
+        </form>
+        
+        <!-- Link to Login page -->
+        <div class="create-account">
+            <a href="sign_in.html">Already have an account? Login here</a>
+        </div>
+        
+           <!-- Footer -->
+           <div>
+            <footer>
+                &copy; 2025 DIGITAL Management System. All rights reserved.
+            </footer>
+            </div>
+    
+    </div>
+  
+
+
+</body>
+</html>

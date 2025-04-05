@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metallurgical and Materials Engineering Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Menu Bar */
+        .menu-bar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #141438;
+            padding-top: 60px;
+        }
+
+        .menu-bar a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu-bar a:hover {
+            background-color: #5d5e5b;
+        }
+
+        /* Main Content */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            flex-grow: 1;
+            padding-bottom: 100px; /* Added space for footer */
+        }
+
+        .section-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* Table for Books */
+        .book-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .book-table th, .book-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .book-table th {
+            background-color: #141438;
+            color: white;
+        }
+
+        .book-table tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        /* Book Details Section */
+        .book-details {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            display: none;
+        }
+
+        .book-details h3 {
+            color: #333;
+        }
+
+        .book-details p {
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #141438;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .view-details-link {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .view-details-link:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Menu Bar -->
+    <div class="menu-bar">
+        <h2 style="color: white; text-align: center;">DIGITAL MANAGEMENT</h2>
+        <a href="home.html">HOME</a>
+        <a href="sign_in.html">LOGIN</a>
+        <a href="combine_registration.html">ENROLLMENT</a>
+        <a href="book_section.html">BOOKS</a>
+        <a href="contact.html">CONTACT</a>
+    </div>
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- Books Table Section -->
+        <div>
+            <h3 class="section-title"> Metallurgical and Materials Engineering Books</h3>
+            <table class="book-table" id="book-table">
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Author</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="book-list">
+                    <!-- Book Entries -->
+                    <tr>
+                        <td>Materials Science and Engineering: An Introduction</td>
+                        <td>William D. Callister</td>
+                        <td><a href="book-details.html?book=0" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Physical Metallurgy Principles</td>
+                        <td>Robert E. Reed-Hill</td>
+                        <td><a href="book-details.html?book=1" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Introduction to Materials Science for Engineers</td>
+                        <td>James F. Shackelford</td>
+                        <td><a href="book-details.html?book=2" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Materials Selection in Mechanical Design</td>
+                        <td>Michael F. Ashby</td>
+                        <td><a href="book-details.html?book=3" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Metallurgy for the Non-Metallurgist</td>
+                        <td>Harry D. Smithells</td>
+                        <td><a href="book-details.html?book=4" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Elements of Materials Science and Engineering</td>
+                        <td>Lawrence H. Van Vlack</td>
+                        <td><a href="book-details.html?book=5" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Fundamentals of Modern Manufacturing</td>
+                        <td>Gerald J. Kalpakjian, Steven R. Schmid</td>
+                        <td><a href="book-details.html?book=6" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Mechanical Behavior of Materials</td>
+                        <td>Norman E. Dowling</td>
+                        <td><a href="book-details.html?book=7" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Materials Characterization Techniques</td>
+                        <td>Sam Zhang, Lin Li, and Ashok Kumar</td>
+                        <td><a href="book-details.html?book=8" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Manufacturing Engineering and Technology</td>
+                        <td>Serope Kalpakjian, Steven Schmid</td>
+                        <td><a href="book-details.html?book=9" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Corrosion Engineering</td>
+                        <td>Patrick J. Flynn</td>
+                        <td><a href="book-details.html?book=10" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Steel Metallurgy for the Non-Metallurgist</td>
+                        <td>John D. Verhoeven</td>
+                        <td><a href="book-details.html?book=11" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Principles of Physical Metallurgy</td>
+                        <td>David J. Fisher</td>
+                        <td><a href="book-details.html?book=12" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Fundamentals of Materials Science and Engineering</td>
+                        <td>William D. Callister, David G. Rethwisch</td>
+                        <td><a href="book-details.html?book=13" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Nanomaterials: Synthesis, Properties and Applications</td>
+                        <td>Keiichiro Kaneko, Kazuya Gamo, Yuji Uchida</td>
+                        <td><a href="book-details.html?book=14" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Materials Science: An Introduction</td>
+                        <td>William D. Callister</td>
+                        <td><a href="book-details.html?book=15" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Welding: Principles and Applications</td>
+                        <td>Larry Jeffus</td>
+                        <td><a href="book-details.html?book=16" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Materials and Processes in Manufacturing</td>
+                        <td>E. Paul DeGarmo</td>
+                        <td><a href="book-details.html?book=17" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Fundamentals of Materials Science</td>
+                        <td>William D. Callister</td>
+                        <td><a href="book-details.html?book=18" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Introduction to Materials Science and Engineering</td>
+                        <td>James F. Shackelford</td>
+                        <td><a href="book-details.html?book=19" class="view-details-link">View Details</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Book Details Section (for each book) -->
+        <div class="book-details" id="book-details">
+            <h3 id="book-title">Book Title</h3>
+            <p id="book-description">Book Description</p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 DIGITAL Management System. All rights reserved.
+    </footer>
+
+</body>
+</html>

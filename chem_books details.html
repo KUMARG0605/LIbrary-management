@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Engineering Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Menu Bar */
+        .menu-bar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #141438;
+            padding-top: 60px;
+        }
+
+        .menu-bar a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu-bar a:hover {
+            background-color: #5d5e5b;
+        }
+
+        /* Main Content */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            flex-grow: 1;
+            padding-bottom: 100px; /* Added space for footer */
+        }
+
+        .section-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* Table for Books */
+        .book-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .book-table th, .book-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .book-table th {
+            background-color: #141438;
+            color: white;
+        }
+
+        .book-table tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        /* Book Details Section */
+        .book-details {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            display: none;
+        }
+
+        .book-details h3 {
+            color: #333;
+        }
+
+        .book-details p {
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #141438;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .view-details-link {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .view-details-link:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+      <!-- Menu Bar -->
+      <div class="menu-bar">
+        <h2 style="color: white; text-align: center;">DIGITAL LEARNING</h2>
+        <a href="home.html">HOME</a>
+        <a href="sign_in.html">LOGIN</a>
+        <a href="combine_registration.html">ENROLLMENT</a>
+        <a href="book_section.html">BOOKS</a>
+        <a href="contact.html">CONTACT</a>
+    </div>
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- Books Table Section -->
+        <div>
+            <h3 class="section-title"> Chemical Engineering Books</h3>
+            <table class="book-table" id="book-table">
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Author</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="book-list">
+                    <!-- Book Entries -->
+                    <tr>
+                        <td>Introduction to Chemical Engineering Thermodynamics</td>
+                        <td>J. M. Smith, Hendrick Van Ness</td>
+                        <td><a href="book-details.html?book=0" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Transport Processes and Separation Process Principles</td>
+                        <td>Christie J. Geankoplis</td>
+                        <td><a href="book-details.html?book=1" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Chemical Engineering: Principles and Practice</td>
+                        <td>Albert N. Kostinek</td>
+                        <td><a href="book-details.html?book=2" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Elementary Principles of Chemical Processes</td>
+                        <td>Richard M. Felder, Ronald W. Rousseau</td>
+                        <td><a href="book-details.html?book=3" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Fundamentals of Heat and Mass Transfer</td>
+                        <td>Incropera, Frank P. and Dewitt, David P.</td>
+                        <td><a href="book-details.html?book=4" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Chemical Reaction Engineering</td>
+                        <td>Oscar, F. Noyes</td>
+                        <td><a href="book-details.html?book=5" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Introduction to Process Control</td>
+                        <td>W. Luyben</td>
+                        <td><a href="book-details.html?book=6" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Process Heat Transfer</td>
+                        <td>Donald Q. Kern</td>
+                        <td><a href="book-details.html?book=7" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Process Systems Analysis and Control</td>
+                        <td>Donald C. Seborg, Thomas F. Edgar, Duncan A. Mellichamp</td>
+                        <td><a href="book-details.html?book=8" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Fluid Mechanics for Chemical Engineers</td>
+                        <td>James M. Welty, Charles E. Wicks, Robert E. Wilson, Gregory L. Rorrer</td>
+                        <td><a href="book-details.html?book=9" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Chemical Process Control</td>
+                        <td>George Stephanopoulos</td>
+                        <td><a href="book-details.html?book=10" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Separation Process Principles</td>
+                        <td>J. D. Seader, Ernest J. Henley</td>
+                        <td><a href="book-details.html?book=11" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Principles of Chemical Engineering Practice</td>
+                        <td>R. A. Lestz, Henry J. Meigs, W. K. Miller</td>
+                        <td><a href="book-details.html?book=12" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Introduction to Chemical Engineering Kinetics</td>
+                        <td>J. H. Weisz</td>
+                        <td><a href="book-details.html?book=13" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Chemical Engineering Design</td>
+                        <td>Raymond W. Seader, Ernest J. Henley</td>
+                        <td><a href="book-details.html?book=14" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Materials and Energy Balances</td>
+                        <td>Y. A. Cengel, M. A. Boles</td>
+                        <td><a href="book-details.html?book=15" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Introduction to Chemical Engineering Computing</td>
+                        <td>William L. Luyben</td>
+                        <td><a href="book-details.html?book=16" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Process Dynamics and Control</td>
+                        <td>Babatunde A. Ogunnaike</td>
+                        <td><a href="book-details.html?book=17" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Industrial Chemical Process Design</td>
+                        <td>Douglas A. S. Reimer</td>
+                        <td><a href="book-details.html?book=18" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Introduction to Environmental Engineering</td>
+                        <td>Howard S. Peavy, Donald R. Rowe</td>
+                        <td><a href="book-details.html?book=19" class="view-details-link">View Details</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Book Details Section (for each book) -->
+        <div class="book-details" id="book-details">
+            <h3 id="book-title">Book Title</h3>
+            <p id="book-description">Book Description</p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 DIGITAL Management System. All rights reserved.
+    </footer>
+
+</body>
+</html>

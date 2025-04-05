@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Section</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Menu Bar */
+        .menu-bar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #141438;
+            padding-top: 60px;
+        }
+
+        .menu-bar a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu-bar a:hover {
+            background-color: #5d5e5b;
+        }
+
+        /* Main Content */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto; /* Enable vertical scrolling */
+            max-height: calc(100vh - 60px); /* Ensure content does not overlap footer */
+        }
+
+        .section-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color:#141438;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none; /* Remove underline from links */
+            color: white;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #f3eded;
+            margin-bottom: 10px;
+        }
+
+        .card-info {
+            font-size: 1.1em;
+            color: #eafa0c;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #141438;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+  <!-- Menu Bar -->
+  <div class="menu-bar">
+    <h2 style="color: white; text-align: center;">DIGITAL LEARNING</h2>
+    <a href="home.html">HOME</a>
+    <a href="sign_in.html">LOGIN</a>
+    <a href="combine_registration.html">ENROLLMENT</a>
+    <a href="book_section.html">BOOKS</a>
+    <a href="contact.html">CONTACT</a>
+</div>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- BTech Branches Section -->
+        <div>
+            <h3 class="section-title">CHOOSE YOUR CHOICE</h3>
+            <div class="flex-container">
+                <a href="cs_book details.html" class="card">
+                    <div class="card-title">CSE</div>
+                    <div class="card-info">Explore books related to Computer Science Engineering.</div>
+                </a>
+
+                <a href="mech_book details.html" class="card">
+                    <div class="card-title">MECH</div>
+                    <div class="card-info">Books for Mechanical Engineering students.</div>
+                </a>
+
+                <a href="mme_books details.html" class="card">
+                    <div class="card-title">MME</div>
+                    <div class="card-info">Books on Metallurgy Engineering topics.</div>
+                </a>
+
+                <a href="eee_book details.html" class="card">
+                    <div class="card-title">EEE</div>
+                    <div class="card-info">Books on Electrical Engineering concepts.</div>
+                </a>
+
+                <a href="ce_books details.html" class="card">
+                    <div class="card-title">CE</div>
+                    <div class="card-info">Books on Civil Engineering topics.</div>
+                </a>
+
+                <a href="chem_books details.html" class="card">
+                    <div class="card-title">CHEM</div>
+                    <div class="card-info">Books on Chemical Engineering topics.</div>
+                </a>
+
+                <a href="ece_book details.html" class="card">
+                    <div class="card-title">ECE</div>
+                    <div class="card-info">Books on Electronics Engineering topics.</div>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Genres Section -->
+        <div>
+            <h3 class="section-title">GENRES</h3>
+            <div class="flex-container">
+                <a href="comic_books details.html" class="card">
+                    <div class="card-title">Comics</div>
+                    <div class="card-info">Superhero and graphic novels for comic lovers.</div>
+                </a>
+
+                <a href="horror_books details.html" class="card">
+                    <div class="card-title">Horror</div>
+                    <div class="card-info">Explore the scariest books in the Horror genre.</div>
+                </a>
+
+                <a href="fiction_books details.html" class="card">
+                    <div class="card-title">Fiction</div>
+                    <div class="card-info">Explore a variety of fiction books.</div>
+                </a>
+
+                <a href="non-fiction_books details.html" class="card">
+                    <div class="card-title">Non-Fiction</div>
+                    <div class="card-info">Read informative non-fiction books.</div>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2025 DIGITAL Management System. All rights reserved.
+    </footer>
+
+</body>
+</html>

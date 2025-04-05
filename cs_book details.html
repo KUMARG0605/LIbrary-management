@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Menu Bar */
+        .menu-bar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #141438;
+            padding-top: 60px;
+        }
+
+        .menu-bar a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu-bar a:hover {
+            background-color: #5d5e5b;
+        }
+
+        /* Main Content */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            flex-grow: 1;
+            padding-bottom: 100px; /* Added space for footer */
+        }
+
+        .section-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* Table for Books */
+        .book-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .book-table th, .book-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .book-table th {
+            background-color: #141438;
+            color: white;
+        }
+
+        .book-table tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        /* Book Details Section */
+        .book-details {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            display: none;
+        }
+
+        .book-details h3 {
+            color: #333;
+        }
+
+        .book-details p {
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #141438;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .view-details-link {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .view-details-link:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+     <!-- Menu Bar -->
+     <div class="menu-bar">
+        <h2 style="color: white; text-align: center;">DIGITAL LEARNING</h2>
+        <a href="home.html">HOME</a>
+        <a href="sign_in.html">LOGIN</a>
+        <a href="combine_registration.html">ENROLLMENT</a>
+        <a href="book_section.html">BOOKS</a>
+        <a href="contact.html">CONTACT</a>
+    </div>
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- Books Table Section -->
+        <div>
+            <h3 class="section-title"> Computer Science Books</h3>
+            <table class="book-table" id="book-table">
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Author</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="book-list">
+                    <!-- Book Entries -->
+                    <tr>
+                        <td>Introduction to Algorithms</td>
+                        <td>Thomas H. Cormen</td>
+                        <td><a href="book-details.html?book=0" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Clean Code: A Handbook of Agile Software Craftsmanship</td>
+                        <td>Robert C. Martin</td>
+                        <td><a href="book-details.html?book=1" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Computer Networking: A Top-Down Approach</td>
+                        <td>James F. Kurose</td>
+                        <td><a href="book-details.html?book=2" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Design Patterns: Elements of Reusable Object-Oriented Software</td>
+                        <td>Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides</td>
+                        <td><a href="book-details.html?book=3" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Artificial Intelligence: A Modern Approach</td>
+                        <td>Stuart Russell, Peter Norvig</td>
+                        <td><a href="book-details.html?book=4" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>The Pragmatic Programmer: Your Journey to Mastery</td>
+                        <td>Andrew Hunt, David Thomas</td>
+                        <td><a href="book-details.html?book=5" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Structure and Interpretation of Computer Programs</td>
+                        <td>Harold Abelson, Gerald Jay Sussman</td>
+                        <td><a href="book-details.html?book=6" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Operating System Concepts</td>
+                        <td>Abraham Silberschatz, Peter B. Galvin, Greg Gagne</td>
+                        <td><a href="book-details.html?book=7" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Introduction to the Theory of Computation</td>
+                        <td>Michael Sipser</td>
+                        <td><a href="book-details.html?book=8" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Refactoring: Improving the Design of Existing Code</td>
+                        <td>Martin Fowler</td>
+                        <td><a href="book-details.html?book=9" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Code Complete</td>
+                        <td>Steve McConnell</td>
+                        <td><a href="book-details.html?book=10" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Fundamentals of Computer Algorithms</td>
+                        <td>Ellis Horowitz, Sartaj Sahni</td>
+                        <td><a href="book-details.html?book=11" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Distributed Systems: Concepts and Design</td>
+                        <td>George Coulouris</td>
+                        <td><a href="book-details.html?book=12" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Algorithms</td>
+                        <td>Robert Sedgewick, Kevin Wayne</td>
+                        <td><a href="book-details.html?book=13" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>The Art of Computer Programming</td>
+                        <td>Donald E. Knuth</td>
+                        <td><a href="book-details.html?book=14" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Java: The Complete Reference</td>
+                        <td>Herbert Schildt</td>
+                        <td><a href="book-details.html?book=15" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Python Crash Course</td>
+                        <td>Eric Matthes</td>
+                        <td><a href="book-details.html?book=16" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Head First Design Patterns</td>
+                        <td>Eric Freeman, Elisabeth Robson</td>
+                        <td><a href="book-details.html?book=17" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>The Mythical Man-Month</td>
+                        <td>Frederick P. Brooks</td>
+                        <td><a href="book-details.html?book=18" class="view-details-link">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Compilers: Principles, Techniques, and Tools</td>
+                        <td>Alfred V. Aho, Monica S. Lam, Ravi Sethi, Jeffrey D. Ullman</td>
+                        <td><a href="book-details.html?book=19" class="view-details-link">View Details</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Book Details Section (for each book) -->
+        <div class="book-details" id="book-details">
+            <h3 id="book-title">Book Title</h3>
+            <p id="book-description">Book Description</p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 DIGITAL Management System. All rights reserved.
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #141438;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Menu Bar */
+        .menu-bar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #010114;
+            padding-top: 60px;
+        }
+
+        .menu-bar a {
+            display: list-item;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            text-decoration: solid;
+            font-size: 18px;
+        }
+
+        .menu-bar a:hover {
+            background-color: #5d5e5b;
+        }
+
+        .menu-bar a.active {
+            background-color: #4CAF50;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+            background-color: #141438;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            width: 45%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .terms {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .terms a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+
+      <!-- Menu Bar -->
+      <div class="menu-bar">
+        <h2 style="color: white; text-align: center;">DIGITAL LEARNING</h2>
+        <a href="home.html">HOME</a>
+        <a href="sign_in.html">LOGIN</a>
+        <a href="combine_registration.html">ENROLLMENT</a>
+        <a href="book_section.html">BOOKS</a>
+        <a href="contact.html">CONTACT</a>
+    </div>
+
+    <!-- Content (Centered Registration Form) -->
+    <div class="content">
+        <div class="form-container">
+            <h2>Registration</h2>
+            <p>ENROLLMENT TYPE</p>
+
+            <!-- Anchor Tags for Navigation (Role Selection) -->
+            <div class="button-container">
+                <a href="student_registration.html" class="button">Student</a> &nbsp; &nbsp;
+                <a href="faculty_registration.html" class="button">Faculty</a>
+            </div>
+
+            <!-- <div class="terms">
+                <p>By continuing, you agree to our <a href="#">Terms of Service</a>.</p>
+            </div> -->
+        </div>
+    </div>
+
+</body>
+</html>

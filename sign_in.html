@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login In</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            color: white;
+            background-color: #141438;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #5e9bff;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .forgot-password {
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .separator {
+            margin: 20px 0;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .create-account {
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .create-account a {
+            color: #fcfeff;
+            text-decoration: none;
+        }
+
+        .create-account a:hover {
+            text-decoration: underline;
+        }
+
+        /* Menu Bar */
+        .menu-bar {
+            height: 100%;
+            width: 250px;
+            margin-top: 0px;
+            position: fixed;
+            margin-left: 0px;
+            top: 0;
+            left: 0;
+            background-color: #141438;
+            padding-top: 60px;
+        }
+
+        .menu-bar a {
+            display: list-item;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            text-decoration: solid;
+            font-size: 18px;
+        }
+
+        .menu-bar a:hover {
+            background-color: #5d5e5b;
+        }
+
+        .menu-bar a.active {
+            background-color: #4CAF50;
+        }
+         /* Footer */
+         footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #141438;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<div>
+
+    <!-- Menu Bar -->
+    <div class="menu-bar">
+        <h2 style="color: white; text-align: center;">DIGITAL LEARNING</h2>
+        <a href="home.html">HOME</a>
+        <a href="sign_in.html">LOGIN</a>
+        <a href="combine_registration.html">ENROLLMENT</a>
+        <a href="book_section.html">BOOKS</a>
+        <a href="contact.html">CONTACT</a>
+    </div>
+
+    <!-- Sign In Form -->
+    <div class="form-container">
+        <h2>Sign In</h2>
+        <form action="/submit_signin" method="POST">
+            <!-- Email or Phone -->
+            <input class="input-field" type="text" name="email_or_phone" placeholder="Email or Phone" required><br>
+
+            <!-- Password -->
+            <input class="input-field" type="password" name="password" placeholder="Password" required><br>
+
+            <!-- Sign In Button -->
+            <input type="submit" class="button" value="Sign In">
+
+            <!-- Forgot Password Link -->
+            <a href="forgot_password.html" class="forgot-password">Forgot your password?</a>
+        </form>
+
+        <!-- Link to Create Account page -->
+        <div class="create-account">
+            <p> <a href="combine_registration.html">Don't have an account? Sign up here</a></p>
+        </div>
+
+       
+    </div>
+      <!-- Footer -->
+       <footer>
+        <p>&copy; 2021 DIGITAL Learning Platform. All rights reserved.</p>
+    </footer>
+</div>
+</div>
+     
+
+
+</body>
+</html>

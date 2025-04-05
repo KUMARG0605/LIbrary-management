@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAL LEARNING</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            min-height: 30vh;
+            background-color: #141438;
+        }
+
+        /* Main content area */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        /* Menu Bar */
+        .menu-bar {
+            margin-top:60px;
+            margin-bottom:0px;
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-bottom: 60px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding-top: 50px;
+        }
+
+        .menu-bar a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu-bar a:hover {
+            background-color: rgba(248, 245, 245, 0.5);
+        }
+
+        .menu-bar a.active {
+            background-color: #4CAF50;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 60px;
+            width: 100%;
+            background-color: rgba(248, 245, 245, 0.5); /* Transparent effect */
+            color: rgb(20, 1, 1);
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            margin-top: 100px; /* To avoid overlap with the header */
+            text-align: center;
+            padding: 50px;
+            background-size: cover;
+            color: rgb(10, 0, 0);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        /* Transparent Overlay */
+        .welcome-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgb(248, 247, 247); /* Dark overlay */
+            z-index: -1; /* Make sure overlay stays behind text */
+            border-radius: 10px;
+        }
+
+        .welcome-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #070000;
+        }
+
+        .quote {
+            font-size: 1.5em;
+            font-style: italic;
+            margin: 20px 0;
+            color: #0c0101;
+        }
+
+        .start-button {
+            background-color: #141438;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .start-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #141438;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Side Navigation Bar -->
+<div class="menu-bar">
+    <h2 style="color: white; text-align: center;">DIGITAL LEARNING</h2>
+    <br>
+    <a href="home.html">HOME</a>
+    <a href="sign_in.html">LOGIN</a>
+    <a href="combine_registration.html">ENROLLMENT</a>
+    <a href="book_section.html">BOOKS</a>
+    <a href="contact.html">CONTACT</a>
+</div>
+
+<!-- Main Content Area -->
+<div class="content">
+    <!-- Header -->
+    <header>
+        <h1>Welcome to the DIGITAL Learning Platform</h1>
+    </header>
+<br><br><br><br>
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+        <h2>Your Learning Journey Begins Here!</h2>
+        <p>Join us for personalized learning with expert tutors, tailored just for you.</p>
+
+        <div class="quote">
+            "Education is the most powerful weapon which you can use to change the world."
+        </div>
+
+        <button class="start-button" onclick="window.location.href='sign_in.html'">Start Today</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2021 DIGITAL Learning Platform. All rights reserved.</p>
+    </footer>
+</div>
+
+</body>
+</html>

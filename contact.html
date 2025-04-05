@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #141438;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        /* Fixed Menu Bar */
+        .menu-bar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #141438;
+            padding-top: 60px;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-bar a {
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-size: 18px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .menu-bar a:hover {
+            background-color: #5d5e5b;
+        }
+
+        .menu-bar a.active {
+            background-color: #4CAF50;
+        }
+
+        /* Content Section */
+        .map-container {
+            margin-left: 250px; /* Give room for the fixed menu */
+            padding: 50px;
+            width: 100%;
+            max-width: 1200px; /* Max width for content */
+            background-color: #141438;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #f8f6f6;
+            margin-bottom: 20px;
+        }
+
+        .map-section iframe {
+            width: 100%;
+            height: 500px;
+            border: 0;
+            border-radius: 10px;
+        }
+
+        /* Address Section */
+        .address-section {
+            background-color: #f9f9fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .address-section h3 {
+            font-size: 1.8em;
+            color: #0e0808;
+        }
+
+        .address {
+            font-size: 1.2em;
+            color: #130707;
+            margin-top: 10px;
+        }
+
+        /* Comment Section */
+        .comment-section {
+            background-color: #fdf8f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-section h3 {
+            font-size: 1.8em;
+            color: #333;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-top: 10px;
+            height: 150px;
+            border: 2px solid #ddd;
+        }
+
+        .comment-form button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .comment-form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+  <!-- Menu Bar -->
+  <div class="menu-bar">
+    <h2 style="color: white; text-align: center;">DIGITAL LEARNING</h2>
+    <a href="home.html">HOME</a>
+    <a href="sign_in.html">LOGIN</a>
+    <a href="combine_registration.html">ENROLLMENT</a>
+    <a href="book_section.html">BOOKS</a>
+    <a href="contact.html">CONTACT</a>
+</div>
+
+    <!-- Content Section -->
+    <div class="map-container">
+        <h2>Contact us:</h2>
+
+
+        <!-- Address Section -->
+        <div class="address-section">
+            <h3>Our Address</h3>
+            <p class="address">
+                IIIT RKValley Library,<br>
+                Kadapa, India.<br>
+                Pincode: 515601<br>
+                Phone: +91 7842982092<br>
+                Email: library@rguktrkv.ac.in
+            </p>
+        </div>
+        <br>
+
+        <!-- Google Map of India -->
+        <div class="map-section">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d306020.9222543096!2d77.0368706!3d20.593684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c17a1cf566f7%3A0x5fdde27f69c6b295!2sIndia!5e0!3m2!1sen!2sus!4v1672831711829!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <!-- Comment Section -->
+        <div class="comment-section">
+            <h3>Your Feedback</h3>
+            <p>We'd love to hear your thoughts or feedback. Please leave your message below!</p>
+            <form class="comment-form" action="/submit_comment" method="POST">
+                <textarea name="comment" placeholder="Write your comment here..." required></textarea><br>
+                <button type="submit">Submit Comment</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
