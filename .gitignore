@@ -128,3 +128,4 @@ static/uploads/*
 
 # Node modules (if using npm)
 node_modules/
+.vercel
