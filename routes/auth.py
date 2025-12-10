@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 import secrets
 
 from models import db, User, Notification, ActivityLog
+from email_service import send_welcome_email, send_login_alert
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -48,8 +49,7 @@ def login():
             
             # Send login notification email
             try:
-                from email_service import send_login_notification
-                send_login_notification(user, request.remote_addr)
+                send_login_alert(user, request.remote_addr, device_info=request.user_agent.string)
             except Exception as e:
                 print(f"Email sending failed: {str(e)}")
             

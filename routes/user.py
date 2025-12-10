@@ -18,11 +18,21 @@ user_bp = Blueprint('user', __name__)
 @login_required
 def dashboard():
     """User dashboard"""
-    # Get active borrowings
-    borrowings = Borrowing.query.filter_by(
+    # Get borrowings by status
+    active_borrowings = Borrowing.query.filter_by(
         user_id=current_user.id,
         status='borrowed'
     ).order_by(Borrowing.due_date).all()
+
+    pending_borrowings = Borrowing.query.filter_by(
+        user_id=current_user.id,
+        status='pending'
+    ).order_by(Borrowing.created_at.desc()).all()
+
+    pending_returns = Borrowing.query.filter_by(
+        user_id=current_user.id,
+        status='pending_return'
+    ).order_by(Borrowing.created_at.desc()).all()
     
     # Get pending reservations
     reservations = Reservation.query.filter_by(
@@ -39,19 +49,20 @@ def dashboard():
     ).order_by(Notification.created_at.desc()).limit(5).all()
     
     # Statistics
-    stats = {
-        'total_borrowed': Borrowing.query.filter_by(user_id=current_user.id).count(),
-        'currently_borrowed': len(borrowings),
-        'overdue': sum(1 for b in borrowings if b.is_overdue()),
-        'reservations': len(reservations)
-    }
-    
+    total_borrowed = Borrowing.query.filter_by(user_id=current_user.id).count()
+    currently_borrowed = len(active_borrowings)
+    overdue = sum(1 for b in active_borrowings if b.is_overdue())
+
     return render_template('user/dashboard.html',
-                          borrowings=borrowings,
+                          active_borrowings=active_borrowings,
+                          pending_borrowings=pending_borrowings,
+                          pending_returns=pending_returns,
                           reservations=reservations,
                           total_fine=total_fine,
                           notifications=notifications,
-                          stats=stats)
+                          total_borrowed=total_borrowed,
+                          currently_borrowed=currently_borrowed,
+                          overdue=overdue)
 
 
 @user_bp.route('/profile', methods=['GET', 'POST'])
@@ -147,44 +158,34 @@ def return_book(borrowing_id):
         user_id=current_user.id,
         status='borrowed'
     ).first_or_404()
-    
-    # Calculate fine if overdue
-    fine = borrowing.calculate_fine()
-    
-    # Update borrowing
-    borrowing.return_date = datetime.utcnow()
-    borrowing.fine_amount = fine
-    borrowing.status = 'returned'
-    
-    # Update book availability
-    book = borrowing.book
-    book.available_copies += 1
-    
-    # Check for pending reservations
-    next_reservation = Reservation.query.filter_by(
-        book_id=book.id,
-        status='pending'
-    ).order_by(Reservation.created_at).first()
-    
-    if next_reservation:
-        # Notify the user
-        notification = Notification(
-            user_id=next_reservation.user_id,
-            title='Book Available!',
-            message=f'The book "{book.title}" is now available for pickup.',
-            notification_type='reservation'
-        )
-        next_reservation.expiry_date = datetime.utcnow() + timedelta(days=3)
-        next_reservation.notified = True
-        db.session.add(notification)
-    
+    # Instead of immediately returning, require verification code
+    from email_service import create_transaction_verification
+
+    # Create verification record
+    verification_code = create_transaction_verification(current_user.id, borrowing.id, 'return')
+
+    # Send email with code
+    try:
+        subject = f"Return Confirmation Required: {borrowing.book.title}"
+        html_body = f"""
+        <html><body>
+        <h3>Return Confirmation</h3>
+        <p>Dear {current_user.full_name},</p>
+        <p>Please confirm the return of <strong>{borrowing.book.title}</strong> by entering the verification code below:</p>
+        <h2>{verification_code}</h2>
+        <p>This code is valid for 24 hours.</p>
+        </body></html>
+        """
+        text_body = f"Return Confirmation for {borrowing.book.title}\n\nVerification Code: {verification_code}\nThis code is valid for 24 hours."
+        send_email(subject, current_user.email, text_body, html_body)
+    except Exception as e:
+        print(f"Error sending return confirmation email: {e}")
+
+    # Mark borrowing as pending return
+    borrowing.status = 'pending_return'
     db.session.commit()
-    
-    if fine > 0:
-        flash(f'Book returned. Fine amount: ₹{fine}', 'warning')
-    else:
-        flash('Book returned successfully!', 'success')
-    
+
+    flash('Return request created. Check your email for the verification code to complete the return.', 'info')
     return redirect(url_for('user.dashboard'))
 
 
@@ -296,6 +297,10 @@ def notifications():
     db.session.commit()
     
     return render_template('user/notifications.html', notifications=notifications)
+
+
+# NOTE: `/transactions/verify` POST handler removed to avoid duplicate endpoints.
+# Verification and finalization logic is implemented in `verify_transaction_code` below.
 
 
 @user_bp.route('/notifications/<int:notification_id>/read', methods=['POST'])
@@ -589,13 +594,76 @@ def verify_transaction_code():
     # Mark as verified
     verification.is_verified = True
     verification.verified_at = datetime.utcnow()
-    db.session.commit()
-    
-    # Get transaction details
-    borrowing = verification.borrowing
-    transaction_type = verification.transaction_type.title()
-    
-    flash(f'✓ Verification successful! {transaction_type} transaction for "{borrowing.book.title}" has been verified.', 'success')
-    
+    db.session.add(verification)
+
+    # Finalize the transaction depending on its type
+    try:
+        borrowing = verification.borrowing
+        ttype = verification.transaction_type
+
+        if ttype == 'borrow':
+            # finalize borrow: ensure book available then decrement
+            if borrowing.status in ['pending', 'pending_verification'] or borrowing.status == 'pending':
+                book = borrowing.book
+                if book.available_copies <= 0:
+                    flash('Book is no longer available. Please contact admin.', 'danger')
+                    db.session.commit()
+                    return redirect(url_for('user.verify_transaction'))
+                book.available_copies -= 1
+                borrowing.status = 'borrowed'
+                borrowing.borrow_date = datetime.utcnow()
+                db.session.add(book)
+                db.session.add(borrowing)
+                notification = Notification(
+                    user_id=current_user.id,
+                    title=f'Book Borrowed: {book.title}',
+                    message=f'You have successfully borrowed "{book.title}". Due date: {borrowing.due_date.strftime("%B %d, %Y")}',
+                    notification_type='borrow',
+                    related_id=borrowing.id,
+                    action_url=url_for('user.dashboard')
+                )
+                db.session.add(notification)
+
+        elif ttype == 'return':
+            # finalize return
+            book = borrowing.book
+            borrowing.return_date = datetime.utcnow()
+            fine = borrowing.calculate_fine()
+            borrowing.fine_amount = fine
+            borrowing.status = 'returned'
+            book.available_copies += 1
+            db.session.add(book)
+            db.session.add(borrowing)
+
+            # notify next reservation
+            next_reservation = Reservation.query.filter_by(
+                book_id=book.id,
+                status='pending'
+            ).order_by(Reservation.created_at).first()
+            if next_reservation:
+                notification = Notification(
+                    user_id=next_reservation.user_id,
+                    title='Book Available!',
+                    message=f'The book "{book.title}" is now available for pickup.',
+                    notification_type='reservation'
+                )
+                next_reservation.expiry_date = datetime.utcnow() + timedelta(days=3)
+                next_reservation.notified = True
+                db.session.add(next_reservation)
+                db.session.add(notification)
+
+        elif ttype == 'renew':
+            # attempt to apply renewal if possible
+            if borrowing.can_renew():
+                borrowing.renew()
+                db.session.add(borrowing)
+
+        db.session.commit()
+        flash(f'✓ Verification successful and {ttype} completed for "{borrowing.book.title}".', 'success')
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error finalizing verification action: {e}")
+        flash('An error occurred while finalizing the transaction. Please contact admin.', 'danger')
+
     return redirect(url_for('user.verify_transaction'))
 

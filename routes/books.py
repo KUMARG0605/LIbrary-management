@@ -172,11 +172,11 @@ def borrow(book_id):
     borrowing = Borrowing(
         user_id=current_user.id,
         book_id=book_id,
-        due_date=due_date
+        due_date=due_date,
+        status='pending'
     )
     
-    # Update book availability
-    book.available_copies -= 1
+    # Don't update book availability until user confirms with verification code
     
     # Cancel any pending reservation by this user
     reservation = Reservation.query.filter_by(
@@ -194,11 +194,11 @@ def borrow(book_id):
     # Create notification with action URL
     notification = Notification(
         user_id=current_user.id,
-        title=f'Book Borrowed: {book.title}',
-        message=f'You have successfully borrowed "{book.title}". Due date: {due_date.strftime("%B %d, %Y")}',
+        title=f'Book Borrow Request: {book.title}',
+        message=f'We have received your borrow request for "{book.title}". Please confirm using the verification code sent to your email. Due date on confirmation will be: {due_date.strftime("%B %d, %Y")}',
         notification_type='borrow',
         related_id=borrowing.id,
-        action_url=url_for('books.detail', book_id=book.id)
+        action_url=url_for('user.dashboard')
     )
     db.session.add(notification)
     db.session.commit()
@@ -206,9 +206,11 @@ def borrow(book_id):
     # Generate verification code
     from email_service import create_transaction_verification
     verification_code = create_transaction_verification(current_user.id, borrowing.id, 'borrow')
+    print(f"[books.borrow] Generated verification code for borrowing {borrowing.id}: {verification_code} -> {current_user.email}")
     
-    # Send email notification
+    # Send email notification with verification code (user must confirm)
     try:
+        print(f"[books.borrow] Sending verification email to {current_user.email} for borrowing {borrowing.id}")
         subject = f"Book Borrowed: {book.title}"
         html_body = f"""
         <html>
@@ -246,7 +248,7 @@ def borrow(book_id):
     except Exception as e:
         print(f"Error sending email: {e}")
     
-    flash(f'Book borrowed successfully! Due date: {due_date.strftime("%B %d, %Y")}', 'success')
+    flash('Borrow request submitted. Check your email for the verification code to complete borrowing.', 'info')
     return redirect(url_for('user.dashboard'))
 
 

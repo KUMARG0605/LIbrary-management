@@ -2,7 +2,9 @@
 Main Routes - Home, About, Contact pages
 """
 
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, current_app
+from email_service import send_email
+from models import Setting
 from models import db, Book, Category, Department, Borrowing
 
 main_bp = Blueprint('main', __name__)
@@ -56,8 +58,24 @@ def contact():
         email = request.form.get('email')
         subject = request.form.get('subject')
         message = request.form.get('message')
-        
-        # Here you would typically send an email or save to database
+        # Save to DB or send notification to admin + confirmation to user
+        admin_email = Setting.get('admin_email', None) or current_app.config.get('MAIL_DEFAULT_SENDER') or 'admin@library.com'
+
+        # Build admin email
+        try:
+            subject_admin = f"Contact Form: {subject}"
+            html_body_admin = render_template('emails/announcement.html', user=None, title=subject_admin, content=f"From: {name} &lt;{email}&gt;<br><br>{message}")
+            text_body_admin = f"Contact Form Submission\nFrom: {name} <{email}>\n\nMessage:\n{message}"
+            send_email(subject_admin, admin_email, text_body_admin, html_body_admin)
+
+            # Confirmation to user
+            subject_user = "We received your message"
+            html_body_user = f"<html><body><p>Hello {name},</p><p>Thank you for contacting Digital Learning Library. We received your message and will get back to you soon.</p><p><strong>Your message:</strong><br>{message}</p><p>Regards,<br>Digital Learning Library</p></body></html>"
+            text_body_user = f"Hello {name},\n\nThank you for contacting Digital Learning Library. We received your message and will get back to you soon.\n\nYour message:\n{message}\n\nRegards,\nDigital Learning Library"
+            send_email(subject_user, email, text_body_user, html_body_user)
+        except Exception as e:
+            print(f"Error sending contact emails: {e}")
+
         flash('Thank you for your message! We will get back to you soon.', 'success')
         return redirect(url_for('main.contact'))
     

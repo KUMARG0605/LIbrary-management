@@ -9,6 +9,8 @@ from threading import Thread
 from datetime import datetime, timedelta
 import random
 import string
+import traceback
+import os
 from models import db, User, EmailLog
 
 
@@ -43,10 +45,47 @@ def send_async_email(app, msg):
     with app.app_context():
         try:
             from app_new import mail
+            print(f"[email_service] Sending email to: {msg.recipients} subject: {msg.subject}")
             mail.send(msg)
+            print(f"[email_service] mail.send() succeeded for: {msg.recipients}")
+            # Update EmailLog entries for these recipients to 'sent'
+            try:
+                from models import EmailLog
+                from datetime import datetime, timedelta
+                cutoff = datetime.utcnow() - timedelta(minutes=10)
+                for recipient in msg.recipients:
+                    logs = EmailLog.query.filter(EmailLog.recipient == recipient,
+                                                 EmailLog.subject == msg.subject,
+                                                 EmailLog.status == 'pending',
+                                                 EmailLog.created_at >= cutoff).all()
+                    for l in logs:
+                        l.status = 'sent'
+                        l.sent_at = datetime.utcnow()
+                db.session.commit()
+            except Exception:
+                # Don't fail the whole send if logging update fails
+                db.session.rollback()
             return True
         except Exception as e:
             print(f"Error sending email: {str(e)}")
+            traceback.print_exc()
+            # mark pending logs as failed
+            try:
+                from models import EmailLog
+                from datetime import datetime, timedelta
+                cutoff = datetime.utcnow() - timedelta(minutes=10)
+                for recipient in msg.recipients:
+                    logs = EmailLog.query.filter(EmailLog.recipient == recipient,
+                                                 EmailLog.subject == msg.subject,
+                                                 EmailLog.status == 'pending',
+                                                 EmailLog.created_at >= cutoff).all()
+                    for l in logs:
+                        l.status = 'failed'
+                        l.error_message = str(e)
+                        l.sent_at = datetime.utcnow()
+                db.session.commit()
+            except Exception:
+                db.session.rollback()
             return False
 
 
@@ -63,10 +102,24 @@ def send_email(subject, recipients, text_body=None, html_body=None, attachments=
     """
     from flask import current_app
     
+    # Prepare recipients list
+    to_list = recipients if isinstance(recipients, list) else [recipients]
+
+    # If in debug and TEST_EMAIL is set, BCC that address for testing
+    bcc_list = None
+    try:
+        test_email = os.environ.get('TEST_EMAIL') or current_app.config.get('TEST_EMAIL')
+        if current_app.config.get('DEBUG') and test_email:
+            bcc_list = [test_email]
+            print(f"[email_service] DEBUG mode: will BCC test email {test_email} for subject '{subject}'")
+    except Exception:
+        bcc_list = None
+
     msg = Message(
         subject=subject,
         sender=current_app.config['MAIL_DEFAULT_SENDER'],
-        recipients=recipients if isinstance(recipients, list) else [recipients]
+        recipients=to_list,
+        bcc=bcc_list
     )
     
     msg.body = text_body
